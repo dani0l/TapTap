@@ -10,16 +10,53 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Overrides
+    // Removes the line from Navigation bar
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        navigationController?.navigationBar.shadowImage = UIImage ()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for:
+        UIBarMetrics.default)
+    }
+    
+    
+    // MARK: - Outlets
+    
+    
+    @IBOutlet weak var countLabel: UILabel!
+    
+    var count = 0
+    
+    
+    
+    
+    // MARK: - Interactions
+    
+
+    @IBAction func tapButton(_ sender: UIButton) {
+       increaseCount()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func tapResetButton(_ sender: UIBarButtonItem) {
+        count = 0
+        countLabel.text = "0"
     }
-
-
+    
+    
+    @IBAction func hondTapButton(_ sender: UILongPressGestureRecognizer) {
+        increaseCount()
+        
+    }
+    
+    // MARK: - Functions
+    // Upon pressing the button Increase the number by +1
+    
+    func increaseCount() {
+        count += 1
+        countLabel.text = String(count)
+    }
+    
+    
+    
 }
 
